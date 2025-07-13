@@ -3,7 +3,7 @@ import React from "react";
 const Login = () => {
   return (
     <>
-      <div className='container'>
+      <div className='container-login'>
         <main className='main'>
           <div className='login-bg'>
             <div className='login'>

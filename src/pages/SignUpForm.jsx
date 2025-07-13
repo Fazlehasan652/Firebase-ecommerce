@@ -5,7 +5,7 @@ const SignUpForm = () => {
     <>
       <div className='container-signup'>
         <main className='main-signup'>
-          <div className='signup-b'>
+          <div className='signup-bg'>
             <div className='login-signup'>
               <h2 className='text-3xl text-white'>Registration Form</h2>
               <div className='content'>
