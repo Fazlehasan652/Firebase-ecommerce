@@ -1,76 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router';
+import { Link } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../features/cart";
+import CartItem from "../components/CartItem";
 
 const Cart = () => {
-    const cart = {}
-    return (
-        <main>
-      <div className="cart flex-center">
-        <div className="cart__items">
-          <div className="cart__items-heading card">
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
+  const dispatch = useDispatch();
+  console.log(dispatch(clearCart));
+  return (
+    <main>
+      <div className='cart flex-center'>
+        <div className='cart__items'>
+          <div className='cart__items-heading card'>
             <h2>Shopping Cart [2 item]</h2>
-            <div className="cart__items-action">
-              <button className="removebtn text-center hover:font-semibold hover:text-amber-50 rounded">
+            <div className='cart__items-action'>
+              <button
+                onClick={() => dispatch(clearCart)}
+                className='removebtn text-center hover:font-semibold hover:text-amber-50 rounded'>
                 Remove all items
               </button>
-              <Link to="/products" className="btn text-center">
-                <button className="hover:font-semibold hover:text-amber-50 rounded">
+              <Link to='/products' className='btn text-center'>
+                <button className='hover:font-semibold hover:text-amber-50 rounded'>
                   Shop More
                 </button>
               </Link>
             </div>
           </div>
 
-          {/* Pruduct 01  */}
+          {/* Product CartItem start  */}
+          {cart.map((item) =>(
+            <CartItem item={item} key={item.id} />
 
-          {cart?.length > 0 ? (
-            cart.map((product) => (
-              <div className="cart__item card flex-space-around">
-                <img
-                  key={product.id + 8}
-                  src={product.image}
-                  alt="headphone"
-                  className="cart__item-img"
-                />
-                <div className="cart__item-description">
-                  <h3 key={product.id} className="product__name">
-                    {product.title}
-                  </h3>
-                  <h4 className="product__price">Price: ${product.price}</h4>
-                  <p className="cart__item-shipping">Free Shipping</p>
-                </div>
-                <div className="cart__item-actions">
-                  <p>Quantity</p>
-                  <div className="cart__item-trash">
-                    <button className="bg-gray-200 w-10">
-                      <i className="fas fa-add"></i>
-                    </button>
-                    <span>{1000}</span>
-                    <button className="bg-gray-200 w-10">
-                      <i className="fas fa-minus"></i>
-                    </button>
-                  </div>
-                </div>
-                <div className="cart__item-actions">
-                  <p>Sub Total</p>
-                  <p>${10 * product.price}</p>
-                </div>
-                <button className="removebtn hover:font-semibold hover:text-amber-50 rounded">
-                  Remove
-                </button>
-              </div>
-            ))
-          ) : (
-            <div className="bg-gray-50 shadow text-red-600">
-              Your Cart is empty{" "}
-              <Link to="/products">
-                <span className="text-blue-600">Go Back</span>
-              </Link>{" "}
-            </div>
-          )}
+          ))}
+          {/* Product CartItem End  */}
         </div>
-        <div className="cart__payment">
-          <div className="cart__payment-summary card">
+        <div className='cart__payment'>
+          <div className='cart__payment-summary card'>
             <h2>Payment Summary</h2>
             <div>
               <p>Sub Total:</p>
@@ -86,22 +52,22 @@ const Cart = () => {
               <p>Total Price:</p>
               <p>$344.38</p>
             </div>
-            <button className="btn cart__payment-btn">Pay Now</button>
+            <button className='btn cart__payment-btn'>Pay Now</button>
           </div>
-          <div className="cart__payment-methods card">
+          <div className='cart__payment-methods card'>
             <h2>Payment Methods</h2>
             <div>
-              <i className="fa-brands fa-cc-visa fa-3x hover:bg-green-500 hover:rounded"></i>
-              <i className="fa-brands fa-cc-apple-pay fa-3x hover:bg-green-500 hover:rounded"></i>
-              <i className="fa-brands fa-cc-amex fa-3x hover:bg-green-500 hover:rounded"></i>
-              <i className="fa-brands fa-cc-amazon-pay fa-3x hover:bg-green-500 hover:rounded"></i>
-              <i className="fa-brands fa-cc-paypal fa-3x hover:bg-green-500 hover:rounded"></i>
+              <i className='fa-brands fa-cc-visa fa-3x hover:bg-green-500 hover:rounded'></i>
+              <i className='fa-brands fa-cc-apple-pay fa-3x hover:bg-green-500 hover:rounded'></i>
+              <i className='fa-brands fa-cc-amex fa-3x hover:bg-green-500 hover:rounded'></i>
+              <i className='fa-brands fa-cc-amazon-pay fa-3x hover:bg-green-500 hover:rounded'></i>
+              <i className='fa-brands fa-cc-paypal fa-3x hover:bg-green-500 hover:rounded'></i>
             </div>
           </div>
         </div>
       </div>
     </main>
-    );
+  );
 };
 
 export default Cart;
