@@ -7,7 +7,7 @@ const Nav = () => {
     <div>
       <ul className='nav-upper flex-space-around hover:text-amber-50'>
         <li className='nav__list text-xl font-semibold hover:text-orange-500'>
-          <Link to='/home'>Home</Link>
+          <Link className="" to='/home'>Home</Link>
         </li>
         <li className='nav__list text-xl font-semibold hover:text-orange-500'>
           <Link to='/shop'>Shop</Link>
