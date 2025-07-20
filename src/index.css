@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 /* Reset code and common code starts hear */
 :root {
   --primary-color: rgb(11, 181, 48);
@@ -143,6 +142,18 @@ nav {
 }
 .profile-icon:hover {
   filter: saturate(1);
+}
+.profile-icon-role {
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 1px solid rgb(246, 250, 7);
+  /* border-radius: 50%; */
+  transition: var(--transition);
+}
+.profile-icon-role:hover {
+  width: 2.125rem;
+  height: 2.125rem;
+  transition-duration: 0.5s;
 }
 .nav-lower {
   min-height: 10vh;
@@ -714,4 +725,40 @@ textarea {
   }
 }
 @media (max-width: 600px) {
+}
+
+/* Register  */
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actions .butt {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #12788a;
+  border: 1px solid #12788a;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+}
+
+.actions .butt:hover {
+  background-color: #12788a;
+  border-color: #12788a;
+}
+
+.actions .toggle {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #12788a;
+  border: none;
+  padding: 0.15rem 1.5rem;
+}
+
+.actions .toggle:hover {
+  background-color: transparent;
+  color: #12788aa8;
 }

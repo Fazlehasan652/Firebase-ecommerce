@@ -1,18 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
     addToCart(state, action) {
+      // console.log(state)
       const product = state.find((product) => product.id === action.payload.id);
+      // console.log(action.payload.id)
+      // console.log(product)
       product
         ? product.quantity++
         : state.push({ ...action.payload, quantity: 1 });
+      Swal.fire(
+        "Successful!",
+        `You have Add ${action.payload.title} !`,
+        "success"
+      );
+      // console.log(product)
     },
-    removeItemCart(state, action) {
-      const product = state.filter(
-        (product) => product.id !== action.payload.id,
+    removeItemFromCart(state, action) {
+      Swal.fire(
+        "Product Removed!",
+        `You have removed ${action.payload.title} !`,
+        "info"
+      );
+      return state.filter(
+        (product) => product.id !== action.payload
+        // console.log(product)
       );
     },
 
@@ -21,10 +37,15 @@ export const cartSlice = createSlice({
       product.quantity = action.payload.quantity;
     },
     clearCart() {
+      Swal.fire("Product Removed!", `You have removed All Proucts !`, "info");
       return [];
     },
   },
 });
 
-export const { addToCart, removeItemCart, modifyQuantityOfAnItem, clearCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeItemFromCart,
+  modifyQuantityOfAnItem,
+  clearCart,
+} = cartSlice.actions;

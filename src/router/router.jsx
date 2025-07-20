@@ -7,6 +7,10 @@ import Cart from "../pages/Cart";
 import Login from "../pages/Login";
 import SignUpForm from "../pages/SignUpForm";
 import Profile from "../pages/Profile";
+import PrivateRoute from "../components/PrivateRoute";
+import Dashboard from "../components/Dashboard";
+import PrivateAdminRoute from "../components/PrivateAdminRoute";
+// import PrivateAdminRoute from "../components/PrivateAdminRoute";
 
 export const rootRouter = createBrowserRouter([
   {
@@ -14,13 +18,28 @@ export const rootRouter = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "home", element: <Home /> },
-      { path: "shop", element: <Shop /> },
-      { path: "about", element: <About /> },
-      { path: "cart", element: <Cart /> },
-      { path: "login", element: <Login /> },
-      { path: "sign-up", element: <SignUpForm /> },
-      { path: "profile", element: <Profile /> },
+      { path: "/home", element: <Home /> },
+      { path: "/shop", element: <Shop /> },
+      { path: "/about", element: <About /> },
+      {
+        path: "/admin/dashboard",
+        element: (
+          <PrivateAdminRoute>
+            <Dashboard />
+          </PrivateAdminRoute>
+        ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
+      },
+      { path: "/login", element: <Login /> },
+      { path: "/sign-up", element: <SignUpForm /> },
+      { path: "/profile", element: <Profile /> },
     ],
   },
 ]);
